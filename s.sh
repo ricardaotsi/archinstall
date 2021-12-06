@@ -3,12 +3,14 @@
 #Variaveis
 swapsize="1G"
 senha="test"
+hostname="archdesktop"
+proc=""
+usuario="user"
+senhauser="user"
 disco="/dev/vda"
 uefi="${disco}1"
 swap="${disco}2"
 linux="${disco}3"
-hostname="archdesktop"
-proc=""
 ########################
 #Configuração Inicial
 loadkeys br-abnt2
@@ -43,7 +45,7 @@ locale-gen
 echo "LANG=pt_BR.UTF-8" >> /etc/locale.conf
 echo "KEYMAP=br-abnt2" >> /etc/vconsole.conf
 mkinitcpio -P
-echo "$senha" | passwd --stdin
+echo "root:$senha" | chpasswd
 pacman -S --noconfirm $proc grub efibootmgr
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
