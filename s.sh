@@ -14,7 +14,7 @@ read proc
 echo "Caminho do disco para instalação:"
 read disco
 echo "Tamanho do swap (ex. 1G):"
-read swap
+read swapsize
 #swapsize="1G"
 #senha="test"
 #hostname="archdesktop"
@@ -31,7 +31,7 @@ loadkeys br-abnt2
 timedatectl set-ntp true
 ########################
 #Particionamento
-wipefs --all $disco
+wipefs -af $disco
 sgdisk -n 1::+300MiB -c 1:"EFI System Partition" -t 1:ef00 $disco
 sgdisk -n 2::+$swapsize -c 2:"Swap" -t 2:8200 $disco
 sgdisk -n 3::0 -c 3:"Linux" -t 3:8300 $disco
