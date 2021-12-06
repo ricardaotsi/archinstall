@@ -3,11 +3,11 @@
 #Variaveis
 swapsize="1G"
 disco="/dev/vda"
-uefi="/dev/vda1"
-swap="/dev/vda2"
-linux="/dev/vda3"
+uefi=$disco"1"
+swap=$disco"2"
+linux=$disco"3"
 hostname="archdesktop"
-#proc="intel-ucode"
+proc=""
 
 ########################
 #Configuração Inicial
