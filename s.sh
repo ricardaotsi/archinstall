@@ -8,12 +8,10 @@ swap="/dev/vda2"
 linux="/dev/vda3"
 hostname="archdesktop"
 proc=""
-
 ########################
 #Configuração Inicial
 loadkeys br-abnt2
 timedatectl set-ntp true
-
 ########################
 #Particionamento
 wipefs --all $disco
@@ -27,13 +25,11 @@ mount -o exec $linux /mnt
 mkdir /mnt/boot
 mount $uefi /mnt/boot
 swapon $swap
-
 ########################
 #Instalação
 reflector --country Brazil --save /etc/pacman.d/mirrorlist
 pacstrap /mnt base linux linux-firmware
 cp /etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist
-
 ########################
 #Configuração
 genfstab -U /mnt >> /mnt/etc/fstab
