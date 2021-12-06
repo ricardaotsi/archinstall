@@ -1,16 +1,20 @@
 #!/bin/bash
 ########################
 #Variaveis
-echo "Tamanho do Swap"
-read swap
-echo "Senha Root"
+echo "Nome usuário:"
+read usuario
+echo "Senha usuario:"
+read senhauser
+echo "Senha root:"
 read senha
-echo "hostname"
+echo "Hostname:"
 read hostname
-echo "Processador microcode"
+echo "Processador microcode (intel-ucode / amd-ucode):"
 read proc
-echo "Caminho disco"
+echo "Caminho do disco para instalação:"
 read disco
+echo "Tamanho do swap:"
+read swap
 #swapsize="1G"
 #senha="test"
 #hostname="archdesktop"
@@ -41,7 +45,7 @@ swapon $swap
 ########################
 #Instalação
 reflector --country Brazil --save /etc/pacman.d/mirrorlist
-pacstrap /mnt base linux linux-firmware
+pacstrap /mnt base linux linux-firmware neovim sudo
 cp /etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist
 ########################
 #Configuração
@@ -56,6 +60,8 @@ echo "LANG=pt_BR.UTF-8" >> /etc/locale.conf
 echo "KEYMAP=br-abnt2" >> /etc/vconsole.conf
 mkinitcpio -P
 echo "root:$senha" | chpasswd
+useradd $usuario -s /bin/bash -m -U -G "wheel"
+echo "$usuario:$senhauser" | chpasswd
 pacman -S --noconfirm $proc grub efibootmgr
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
