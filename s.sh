@@ -52,6 +52,7 @@ grub-install --target=x86_64-efi --efi-directory=/etc/boot --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 exit
 EOF
+chmod +x /mnt/root/install.sh
 arch-chroot /mnt /root/install.sh
 umount -R /mnt
 echo -e "Reinicie para acessar o sistema"
