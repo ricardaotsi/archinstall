@@ -23,7 +23,7 @@ sgdisk -n 3::0 -c 3:"Linux" -t 3:8300 $disco
 mkfs.fat -F 32 $uefi
 mkswap $swap
 mkfs.ext4 $linux
-mount $linux /mnt
+mount -o exec $linux /mnt
 mkdir /mnt/boot
 mount $uefi /mnt/boot
 swapon $swap
