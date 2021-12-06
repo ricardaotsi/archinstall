@@ -3,9 +3,9 @@
 #Variaveis
 swapsize="1G"
 disco="/dev/vda"
-uefi=$disco"1"
-swap=$disco"2"
-linux=$disco"3"
+uefi="/dev/vda1"
+swap="/dev/vda2"
+linux="/dev/vda3"
 hostname="archdesktop"
 proc=""
 
