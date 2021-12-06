@@ -16,7 +16,7 @@ timedatectl set-ntp true
 
 ########################
 #Particionamento
-wipefs $disco
+wipefs --all $disco
 sgdisk -n 1::+300MiB -c 1:"EFI System Partition" -t 1:ef00 $disco
 sgdisk -n 2::+$swapsize -c 2:"Swap" -t 2:8200 $disco
 sgdisk -n 3::0 -c 3:"Linux" -t 3:8300 $disco
