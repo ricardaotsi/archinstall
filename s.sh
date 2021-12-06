@@ -1,13 +1,23 @@
 #!/bin/bash
 ########################
 #Variaveis
-swapsize="1G"
-senha="test"
-hostname="archdesktop"
-proc=""
-usuario="user"
-senhauser="user"
-disco="/dev/vda"
+echo "Tamanho do Swap"
+read swap
+echo "Senha Root"
+read senha
+echo "hostname"
+read hostname
+echo "Processador microcode"
+read proc
+echo "Caminho disco"
+read disco
+#swapsize="1G"
+#senha="test"
+#hostname="archdesktop"
+#proc=""
+#usuario="user"
+#senhauser="user"
+#disco="/dev/vda"
 uefi="${disco}1"
 swap="${disco}2"
 linux="${disco}3"
@@ -23,7 +33,7 @@ sgdisk -n 2::+$swapsize -c 2:"Swap" -t 2:8200 $disco
 sgdisk -n 3::0 -c 3:"Linux" -t 3:8300 $disco
 mkfs.fat -F 32 $uefi
 mkswap $swap
-mkfs.ext4 $linux
+echo "y" | mkfs.ext4 $linux
 mount -o exec $linux /mnt
 mkdir /mnt/boot
 mount $uefi /mnt/boot
