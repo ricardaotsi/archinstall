@@ -13,7 +13,7 @@ echo "Processador microcode (intel-ucode / amd-ucode):"
 read proc
 echo "Caminho do disco para instalação:"
 read disco
-echo "Tamanho do swap:"
+echo "Tamanho do swap (ex. 1G):"
 read swap
 #swapsize="1G"
 #senha="test"
