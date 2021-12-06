@@ -3,9 +3,9 @@
 #Variaveis
 swapsize="1G"
 disco="/dev/vda"
-uefi="/dev/vda1"
-swap="/dev/vda2"
-linux="/dev/vda3"
+uefi="${disco}1"
+swap="${disco}2"
+linux="${disco}3"
 hostname="archdesktop"
 proc=""
 ########################
@@ -44,7 +44,7 @@ echo "KEYMAP=br-abnt2" >> /etc/vconsole.conf
 mkinitcpio -P
 passwd
 pacman -S $proc grub efibootmgr
-grub-install --target=x86_64-efi --efi-directory=/etc/boot --bootloader-id=GRUB
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 exit
 EOF
