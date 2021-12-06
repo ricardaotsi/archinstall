@@ -2,6 +2,7 @@
 ########################
 #Variaveis
 swapsize="1G"
+senha="test"
 disco="/dev/vda"
 uefi="${disco}1"
 swap="${disco}2"
@@ -42,8 +43,8 @@ locale-gen
 echo "LANG=pt_BR.UTF-8" >> /etc/locale.conf
 echo "KEYMAP=br-abnt2" >> /etc/vconsole.conf
 mkinitcpio -P
-passwd
-pacman -S $proc grub efibootmgr
+echo "$senha" | passwd --stdin
+pacman -S --noconfirm $proc grub efibootmgr
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 exit
