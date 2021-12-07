@@ -38,7 +38,7 @@ swapon $swap
 ########################
 #Instalação
 reflector --country Brazil --sort rate --save /etc/pacman.d/mirrorlist
-pacstrap /mnt base linux linux-firmware neovim sudo networkmanager
+pacstrap /mnt base linux linux-firmware neovim sudo networkmanager alacritty fish fontconfig ttf-font
 cp /etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist
 ########################
 #Configuração
@@ -60,6 +60,7 @@ grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 sed -i '85 s/^##*//' /etc/sudoers
 systemctl enable NetworkManager
+chsh -s /bin/fish
 exit
 EOF
 chmod +x /mnt/root/install.sh
