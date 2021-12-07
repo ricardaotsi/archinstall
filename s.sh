@@ -45,7 +45,7 @@ swapon $swap
 ########################
 #Instalação
 reflector --country Brazil --save /etc/pacman.d/mirrorlist
-pacstrap /mnt base linux linux-firmware neovim sudo
+pacstrap /mnt base linux linux-firmware neovim sudo networkmanager
 cp /etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist
 ########################
 #Configuração
@@ -65,6 +65,8 @@ echo "$usuario:$senhauser" | chpasswd
 pacman -S --noconfirm $proc grub efibootmgr
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
+sed -i '85 s/^##*//' /etc/sudoers
+systemctl enable NetworkManager
 exit
 EOF
 chmod +x /mnt/root/install.sh
