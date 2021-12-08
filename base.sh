@@ -39,7 +39,6 @@ swapon $swap
 #Instalação
 reflector --country Brazil --sort rate --save /etc/pacman.d/mirrorlist
 pacstrap /mnt base linux linux-firmware neovim sudo networkmanager alacritty fish firefox
-#xorg-server xorg-xinit xorg-xrandr awesome fontconfig ttf-font
 cp /etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist
 ########################
 #Configuração
