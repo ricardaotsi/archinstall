@@ -37,8 +37,7 @@ mount $uefi /mnt/boot
 swapon $swap
 ########################
 #Instalação
-#reflector --country Brazil --sort rate --save /etc/pacman.d/mirrorlist
-printf 'Server = http://archlinux.c3sl.ufpr.br/$repo/os/$arch' > /etc/pacman.d/mirrorlist
+reflector --sort rate --latest 10 --save /etc/pacman.d/mirrorlist
 pacstrap /mnt base linux linux-firmware neovim sudo networkmanager fish
 cp /etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist
 ########################
