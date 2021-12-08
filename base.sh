@@ -64,5 +64,6 @@ exit
 EOF
 chmod +x /mnt/root/install.sh
 arch-chroot /mnt /root/install.sh
+cp /root/archisntall/aw.sh /mnt/home/$usuario
 umount -R /mnt
 echo -e "Reinicie para acessar o sistema"
