@@ -60,8 +60,8 @@ systemctl enable NetworkManager
 chsh -s /bin/fish
 mkdir -p /home/$usuario/.config/awesome
 cp /etc/xdg/awesome/rc.lua /home/$usuario/.config/awesome/
-mkdir -p mkdir -p /home/$usuario/.config/awesome/themes
-cp /usr/share/awesome/themes/* /home/$usuario/.config/awesome/themes/
+mkdir -p /home/$usuario/.config/awesome/themes
+cp -R /usr/share/awesome/themes/* /home/$usuario/.config/awesome/themes/
 printf "#!/bin/bash\nsetxkbmap -layout br\nxandr --output Virtual-1 --mode 1680x1050\nexec awesome" > /home/$usuario/.xinitrc
 printf 'if status is-login\n    if test -z "$DISPLAY" -a "$XDG_VTNR" = 1\n      exec startx\n   end\nend' > /home/$usuario/.config/fish/config.fish
 pacman -S --noconfirm $proc grub efibootmgr
