@@ -60,10 +60,9 @@ systemctl enable NetworkManager
 pacman -S --noconfirm $proc grub efibootmgr
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
-exit
 EOF
 chmod +x /mnt/root/install.sh
 arch-chroot /mnt /root/install.sh
-cp /root/archisntall/aw.sh /mnt/home/$usuario
+cp /root/archinstall/aw.sh /mnt/home/$usuario
 umount -R /mnt
 echo -e "Reinicie para acessar o sistema"
