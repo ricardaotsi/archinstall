@@ -49,8 +49,9 @@ ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 hwclock --systohc
 sed -i '393 s/^##*//' /etc/locale.gen
 locale-gen
-echo "LANG=pt_BR.UTF-8" >> /etc/locale.conf
-echo "KEYMAP=br-abnt2" >> /etc/vconsole.conf
+echo "LANG=pt_BR.UTF-8" > /etc/locale.conf
+echo "KEYMAP=br-abnt2" > /etc/vconsole.conf
+echo "$hostname" > /etc/hostname
 mkinitcpio -P
 echo "root:$senha" | chpasswd
 useradd $usuario -s /bin/bash -m -U -G "wheel"
