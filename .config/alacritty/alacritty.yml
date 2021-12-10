@@ -2,8 +2,8 @@
 colors:
   # Default colors
   primary:
- #   background: "#312938"
-    foreground: "#b967ff"
+    background: "#B967FF"
+    foreground: "0xE1EFFF"
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
