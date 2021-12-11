@@ -142,7 +142,7 @@ awful.screen.connect_for_each_screen(function(s)
     awful.tag({ "1", "2", "3", "4" }, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
-    s.mypromptbox = awful.widget.prompt()
+--    s.mypromptbox = awful.widget.prompt()
     -- Create an imagebox widget which will contain an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
     s.mylayoutbox = awful.widget.layoutbox(s)
@@ -174,7 +174,7 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             -- mylauncher,
             s.mytaglist,
-            s.mypromptbox,
+--            s.mypromptbox,
         },
         s.mytasklist, -- Middle widget
         { -- Right widgets
@@ -261,10 +261,14 @@ globalkeys = gears.table.join(
               {description = "increase the number of columns", group = "layout"}),
     awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1, nil, true)    end,
               {description = "decrease the number of columns", group = "layout"}),
-    awful.key({ modkey,           }, "space", function () awful.layout.inc( 1)                end,
+    awful.key({ modkey,           }, "space", function () awful.spawn.with_shell("rofi -show drun")                end,
+              {description = "open rofi drun", group = "programs"}),
+    awful.key({ modkey,           }, "b", function () awful.spawn.with_shell("firefox")                end,
+              {description = "open firefox", group = "programs"}),
+    awful.key({ modkey,           }, "r", function () awful.layout.inc( 1)                end,
               {description = "select next", group = "layout"}),
-    awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(-1)                end,
-              {description = "select previous", group = "layout"}),
+--    awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(-1)                end,
+--              {description = "select previous", group = "layout"}),
 
     awful.key({ modkey, "Control" }, "n",
               function ()
@@ -279,8 +283,8 @@ globalkeys = gears.table.join(
               {description = "restore minimized", group = "client"}),
 
     -- Prompt
-    awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
-              {description = "run prompt", group = "launcher"}),
+--    awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
+--              {description = "run prompt", group = "launcher"}),
 
     awful.key({ modkey }, "x",
               function ()
