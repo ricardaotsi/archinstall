@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo pacman -Sy archlinux-keyring
 sudo pacman -S --noconfirm base-devel
 git clone https://aur.archlinux.org/yay-bin.git
 cd yay-bin
