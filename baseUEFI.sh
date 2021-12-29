@@ -38,7 +38,7 @@ swapon $swap
 ########################
 #Instalação
 reflector --country Brazil --sort rate --save /etc/pacman.d/mirrorlist
-pacstrap /mnt base linux linux-firmware neovim sudo networkmanager
+pacstrap /mnt base linux linux-firmware neovim sudo networkmanager git
 cp /etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist
 ########################
 #Configuração

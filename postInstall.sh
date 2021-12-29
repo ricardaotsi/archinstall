@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo pacman -S --noconfirm git base-devel
+sudo pacman -S --noconfirm base-devel
 git clone https://aur.archlinux.org/yay-bin.git
 cd yay-bin
 makepkg -si
