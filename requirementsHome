@@ -30,3 +30,12 @@ print-manager
 yakuake
 plasma-pa
 plasma-nm
+dnsmasq
+qemu
+iptables-nft
+inetutils
+libvirt
+rclone
+rsync
+smartmontools
+virt-manager

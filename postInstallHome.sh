@@ -1,4 +1,6 @@
 #!/bin/fish
+####################################################
+##Install Yay
 sudo pacman -Sy archlinux-keyring
 sudo pacman -S --noconfirm base-devel
 git clone https://aur.archlinux.org/yay-bin.git
@@ -8,22 +10,32 @@ cd $HOME
 yay -Y --gendb
 yay -Y --devel --save
 rm -rf yay-bin
-sudo pacman -S --noconfirm (awk '{print $1}' requirementsHome)
+###################################################
+##Install requirements
+sudo pacman -S --noconfirm $(awk '{print $1}' requirementsHome)
+###################################################
+##Enable services
 sudo systemctl enable sshd
 sudo systemctl enable cronie
+sudo systemctl enable libvirtd
+###################################################
+##Configure and enable tigervnc
+mkdir /home/ricardo/.vnc
+printf ":1=ricardo\n" | sudo tee -a /etc/tigervnc/vncserver.users
+printf "session=plasma\ngeometry=1920x1080" > ~/.vnc/config
+printf "100senha" | vncpasswd -f > /home/ricardo/.vnc/passwd
+chown -R ricardo:ricardo /home/ricardo/.vnc
+chmod 0600 /home/ricardo/.vnc/passwd
+sudo systemctl enable vncserver@:1.service
+###################################################
+##Startx
 printf "export DESKTOP_SESSION=plasma\nexec startplasma-x11" > ~/.xinitrc
-git clone https://github.com/ricardaotsi/qtile-nord-dotfiles.git
-cp qtile-nord-dotfiles/.byobu ~/
-cp qtile-nord-dotfiles/.config/fish ~/.config/
-rm -rf qtile-nord-dotfiles
+###################################################
+##Autologin
 sudo mkdir /etc/systemd/system/getty@tty1.service.d
-sudo printf "[Service]\nExecStart=\nExecStart=-/usr/bin/agetty --autologin ricardo --noclear %I $TERM" > /etc/systemd/system/getty@tty1.service.d/override.conf
+printf "[Service]\nExecStart=\nExecStart=-/usr/bin/agetty --autologin ricardo --noclear %%I \$TERM" | sudo tee /etc/systemd/system/getty@tty1.service.d/override.conf
+###################################################
+##Mount sdb1
 sudo mkdir /mnt/data
 sudo chown -R ricardo:ricardo /mnt/data
-sudo printf "/dev/sdb1	/mnt/data	defaults	0 0\n" >> /etc/fstab
-cat /usr/share/xsessions/
-read sessao
-printf ":1 ricardo\n" >> /etc/tigervnc/vncserver.users
-printf "session=$sessao\ngeometry=1920x1080" > ~/.vnc/config
-vncpasswd
-sudo systemctl enable vncserver@:1.service
+sudo printf "/dev/sdb1	/mnt/data	ext4	defaults	0 0\n" | sudo tee -a /etc/fstab

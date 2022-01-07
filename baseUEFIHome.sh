@@ -1,10 +1,20 @@
 #!/bin/bash
 ########################
 #Variaveis
-usuario="ricardo"
-senha="freakcrow"
-hostname="ti"
-disco="/dev/sda"
+echo "Nome usuário:"
+read usuario
+echo "Senha:"
+read senha
+echo "Hostname:"
+read hostname
+echo "Processador microcode (intel-ucode / amd-ucode):"
+read proc
+echo "Caminho do disco para instalação:"
+read disco
+echo "Tamanho do swap (ex. 1G):"
+read swapsize
+echo "Tamanho do root (ex. 100G):"
+read rootsize
 uefi="${disco}1"
 swap="${disco}2"
 linux="${disco}3"
@@ -17,8 +27,8 @@ timedatectl set-ntp true
 #Particionamento
 wipefs -af $disco
 sgdisk -n 1::+300MiB -c 1:"EFI System Partition" -t 1:ef00 $disco
-sgdisk -n 2::+16G -c 2:"Swap" -t 2:8200 $disco
-sgdisk -n 3::+100G -c 3:"Linux" -t 3:8300 $disco
+sgdisk -n 2::+$swapsize -c 2:"Swap" -t 2:8200 $disco
+sgdisk -n 3::+$rootsize -c 3:"Linux" -t 3:8300 $disco
 sgdisk -n 4::0 -c 4:"Home" -t 4:8300 $disco
 mkfs.fat -F 32 $uefi
 mkswap $swap
