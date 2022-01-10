@@ -40,5 +40,6 @@ sudo mkdir /mnt/data
 sudo chown -R ricardo:ricardo /mnt/data
 sudo printf "/dev/sdb1	/mnt/data	ext4	defaults	0 0\n" | sudo tee -a /etc/fstab
 ###################################################
-##Add user to libvirt group
+##Add user to libvirt group and allow usb redirecting
 sudo usermod -a -G libvirt ricardo
+sed '/<defaults>$/a\      allow_any>yes</allow_any>' /usr/share/polkit-1/actions/org.spice-space.lowlevelusbaccess.policy | sudo tee ~/usb.temp && sudo mv ~/usb.temp /usr/share/polkit-1/actions/org.spice-space.lowlevelusbaccess.policy
