@@ -39,3 +39,6 @@ printf "[Service]\nExecStart=\nExecStart=-/usr/bin/agetty --autologin ricardo --
 sudo mkdir /mnt/data
 sudo chown -R ricardo:ricardo /mnt/data
 sudo printf "/dev/sdb1	/mnt/data	ext4	defaults	0 0\n" | sudo tee -a /etc/fstab
+###################################################
+##Add user to libvirt group
+sudo usermod -a -G libvirt ricardo
