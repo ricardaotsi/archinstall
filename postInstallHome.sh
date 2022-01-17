@@ -38,3 +38,13 @@ printf "[Service]\nExecStart=\nExecStart=-/usr/bin/agetty --autologin ricardo --
 sudo mkdir /mnt/data
 sudo chown -R ricardo:ricardo /mnt/data
 printf "/dev/sdb1	/mnt/data	ext4	defaults	0 0\n" | sudo tee -a /etc/fstab
+###################################################
+##Copy config
+git clone https://github.com/ricardaotsi/qtile-nord-dotfiles.git
+cd qtile-nord-dotfiles
+cp -r .local ~/
+cp -r .byobu ~/
+cp '*rc' ~/.config
+cp -r .config/fish ~/.config
+cd $HOME
+rm -rf qtile-nord-dotfiles
