@@ -1,7 +1,7 @@
 #!/bin/fish
 ####################################################
 ##Install Yay
-sudo pacman -Sy archlinux-keyring
+sudo pacman -Sy --noconfirm archlinux-keyring
 sudo pacman -S --noconfirm base-devel
 git clone https://aur.archlinux.org/yay-bin.git
 cd yay-bin
@@ -42,9 +42,9 @@ printf "/dev/sdb1	/mnt/data	ext4	defaults	0 0\n" | sudo tee -a /etc/fstab
 ##Copy config
 git clone https://github.com/ricardaotsi/qtile-nord-dotfiles.git
 cd qtile-nord-dotfiles
-cp -r .local ~/
+#cp -r .local ~/
 cp -r .byobu ~/
-cp '*rc' ~/.config
+#cp '*rc' ~/.config
 cp -r .config/fish ~/.config
 cd $HOME
-rm -rf qtile-nord-dotfiles
+rm -rf qtile-nord-dotfiles1
